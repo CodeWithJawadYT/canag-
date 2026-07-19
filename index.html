@@ -844,10 +844,7 @@
         backdrop-filter: blur(16px) saturate(140%);
         -webkit-backdrop-filter: blur(16px) saturate(140%);
         border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        transition:
-          box-shadow 0.3s ease,
-          border-color 0.3s ease,
-          background 0.3s ease;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
       }
       .navbar.scrolled {
         background: rgba(3, 3, 4, 0.92);
@@ -886,10 +883,7 @@
         opacity: 0;
         visibility: hidden;
         transform: translateY(6px);
-        transition:
-          opacity 0.2s ease,
-          transform 0.2s ease,
-          visibility 0.2s;
+        transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
       }
       .nav-dropdown:hover .nav-dropdown-panel,
       .nav-dropdown.open .nav-dropdown-panel {
@@ -905,10 +899,7 @@
         transform: rotate(180deg);
       }
       .nav-drop-link {
-        transition:
-          background 0.15s ease,
-          padding-left 0.15s ease,
-          color 0.15s ease;
+        transition: background 0.15s ease, padding-left 0.15s ease, color 0.15s ease;
       }
       .nav-drop-link:hover {
         background: rgba(230, 28, 36, 0.1);
@@ -1014,11 +1005,7 @@
       <nav
         class="max-w-7xl mx-auto px-4 md:px-6 h-[68px] flex items-center justify-between"
       >
-        <a
-          href="#"
-          data-route="home"
-          class="flex items-center gap-3 group shrink-0"
-        >
+        <a href="#" data-route="home" class="flex items-center gap-3 group shrink-0">
           <span
             class="logo-mark inline-flex items-center justify-center"
             style="filter: drop-shadow(0 0 8px rgba(230, 28, 36, 0.45))"
@@ -1060,66 +1047,31 @@
             <button
               type="button"
               class="nav-item nav-link services-toggle flex items-center whitespace-nowrap gap-1.5 px-3.5 rounded-md"
-              style="
-                background: transparent;
-                border: 0;
-                margin: 0;
-                font: inherit;
-                letter-spacing: inherit;
-                text-transform: inherit;
-                line-height: 1;
-                cursor: pointer;
-              "
+              style="background: transparent; border: 0; margin: 0; font: inherit; letter-spacing: inherit; text-transform: inherit; line-height: 1; cursor: pointer;"
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <span>Services</span>
-              <i class="fa-solid fa-chevron-down text-[9px] chev-mini"></i>
+              <span>Services</span> <i class="fa-solid fa-chevron-down text-[9px] chev-mini"></i>
             </button>
             <div
               class="nav-dropdown-panel absolute left-0 top-[calc(100%+10px)] w-64 clip-corner border border-[color:var(--line)] bg-[#0a0a0d]/98 backdrop-blur-md p-2 shadow-2xl z-50"
             >
-              <a
-                data-route="tires"
-                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
-              >
-                <i
-                  class="fa-solid fa-car-burst text-[color:var(--red2)] w-4"
-                ></i>
-                <span class="font-display uppercase tracking-widest text-[11px]"
-                  >Tire Services</span
-                >
+              <a data-route="tires" class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal">
+                <i class="fa-solid fa-car-burst text-[color:var(--red2)] w-4"></i>
+                <span class="font-display uppercase tracking-widest text-[11px]">Tire Services</span>
               </a>
-              <a
-                data-route="oil"
-                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
-              >
+              <a data-route="oil" class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal">
                 <i class="fa-solid fa-oil-can text-[color:var(--red2)] w-4"></i>
-                <span class="font-display uppercase tracking-widest text-[11px]"
-                  >Oil Change</span
-                >
+                <span class="font-display uppercase tracking-widest text-[11px]">Oil Change</span>
               </a>
-              <a
-                data-route="detail"
-                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
-              >
-                <i
-                  class="fa-solid fa-spray-can-sparkles text-[color:var(--red2)] w-4"
-                ></i>
-                <span class="font-display uppercase tracking-widest text-[11px]"
-                  >Detailing</span
-                >
+              <a data-route="detail" class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal">
+                <i class="fa-solid fa-spray-can-sparkles text-[color:var(--red2)] w-4"></i>
+                <span class="font-display uppercase tracking-widest text-[11px]">Detailing</span>
               </a>
               <div class="divider-red my-1 opacity-40"></div>
-              <a
-                data-route="membership"
-                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
-              >
+              <a data-route="membership" class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal">
                 <i class="fa-solid fa-crown text-[color:var(--gold)] w-4"></i>
-                <span
-                  class="font-display uppercase tracking-widest text-[11px] text-[color:var(--gold)]"
-                  >Membership</span
-                >
+                <span class="font-display uppercase tracking-widest text-[11px] text-[color:var(--gold)]">Membership</span>
               </a>
             </div>
           </li>
@@ -1135,7 +1087,7 @@
             <a
               data-route="subscribe"
               class="nav-item nav-link flex items-center whitespace-nowrap px-3.5 rounded-md"
-              >Email</a
+              >Discounts</a
             >
           </li>
           <li class="flex items-stretch">
@@ -1216,22 +1168,16 @@
               class="flex items-center justify-between gap-3 px-4 py-3 rounded-md hover:bg-white/5"
             >
               <span class="flex items-center gap-3"
-                ><i
-                  class="fa-solid fa-screwdriver-wrench text-[color:var(--red2)] w-5"
-                ></i
+                ><i class="fa-solid fa-screwdriver-wrench text-[color:var(--red2)] w-5"></i
                 >Services</span
               >
               <i class="fa-solid fa-chevron-down text-xs chev"></i>
             </summary>
-            <div
-              class="pl-6 flex flex-col gap-1 pb-2 normal-case tracking-normal text-sm"
-            >
+            <div class="pl-6 flex flex-col gap-1 pb-2 normal-case tracking-normal text-sm">
               <a
                 data-route="tires"
                 class="drawer-link flex items-center gap-3 px-4 py-2.5 rounded-md hover:bg-white/5 text-white/80"
-                ><i
-                  class="fa-solid fa-car-burst text-[color:var(--red2)] w-5"
-                ></i
+                ><i class="fa-solid fa-car-burst text-[color:var(--red2)] w-5"></i
                 >Tire Services</a
               >
               <a
@@ -1243,9 +1189,7 @@
               <a
                 data-route="detail"
                 class="drawer-link flex items-center gap-3 px-4 py-2.5 rounded-md hover:bg-white/5 text-white/80"
-                ><i
-                  class="fa-solid fa-spray-can-sparkles text-[color:var(--red2)] w-5"
-                ></i
+                ><i class="fa-solid fa-spray-can-sparkles text-[color:var(--red2)] w-5"></i
                 >Detailing</a
               >
               <a
@@ -1270,10 +1214,8 @@
           <a
             data-route="subscribe"
             class="drawer-link flex items-center gap-3 px-4 py-3 rounded-md hover:bg-white/5"
-            ><i
-              class="fa-solid fa-envelope-open-text text-[color:var(--gold)] w-5"
-            ></i
-            >Email</a
+            ><i class="fa-solid fa-envelope-open-text text-[color:var(--gold)] w-5"></i
+            >Discounts</a
           >
         </li>
         <li>
@@ -1334,11 +1276,7 @@
             </div>
           </div>
           <p class="mt-4 text-sm text-white/60">
-            Tigar is Cornwall’s premium mobile auto infrastructure providing
-            seasonal tire services, flat repair roadside recovery, synthetic
-            oil, and filter changes, car wash, showroom grade detailing, Dashcam
-            installation, Door unlock, Key programming, and much more at your
-            driveway or anywhere and anytime.
+            Tigar is Cornwall’s premium mobile auto infrastructure providing seasonal tire services, flat repair roadside recovery, synthetic oil, and filter changes, car wash, showroom grade detailing, Dashcam installation, Door unlock, Key programming, and much more at your driveway or anywhere and anytime.
           </p>
         </div>
         <div>
@@ -1401,9 +1339,7 @@
                 href="mailto:Tigarcanada@gmail.com"
                 class="hover:text-[color:var(--red2)] transition-colors"
               >
-                <i
-                  class="fa-solid fa-envelope text-[color:var(--red2)] w-5"
-                ></i>
+                <i class="fa-solid fa-envelope text-[color:var(--red2)] w-5"></i>
                 Tigarcanada@gmail.com
               </a>
             </li>
@@ -1453,15 +1389,7 @@
 
       /* ---------- ROUTER ---------- */
       const app = document.getElementById("app");
-      const routes = [
-        "home",
-        "tires",
-        "oil",
-        "detail",
-        "membership",
-        "book",
-        "subscribe",
-      ];
+      const routes = ["home", "tires", "oil", "detail", "membership", "book", "subscribe"];
       let pendingScrollTarget = null;
 
       function setActive(route) {
