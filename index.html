@@ -49,6 +49,7 @@
         "name": "TIGAR - The Indian Gladiator Autotires and Recovery",
         "image": "https://tigarcanada.example/logo.png",
         "telephone": "+1-613-861-7100",
+        "email": "Tigarcanada@gmail.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Cornwall",
@@ -836,6 +837,91 @@
           animation: none !important;
         }
       }
+
+      /* ============ NAVBAR — PREMIUM REDESIGN ============ */
+      .navbar {
+        background: rgba(5, 5, 6, 0.78);
+        backdrop-filter: blur(16px) saturate(140%);
+        -webkit-backdrop-filter: blur(16px) saturate(140%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition:
+          box-shadow 0.3s ease,
+          border-color 0.3s ease,
+          background 0.3s ease;
+      }
+      .navbar.scrolled {
+        background: rgba(3, 3, 4, 0.92);
+        border-bottom-color: rgba(230, 28, 36, 0.35);
+        box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.6);
+      }
+      .nav-item {
+        position: relative;
+        color: rgba(255, 255, 255, 0.68);
+        transition: color 0.2s ease;
+      }
+      .nav-item::after {
+        content: "";
+        position: absolute;
+        left: 14px;
+        right: 14px;
+        bottom: 2px;
+        height: 2px;
+        border-radius: 2px;
+        background: linear-gradient(90deg, var(--red2), var(--gold));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .nav-item:hover {
+        color: #fff;
+      }
+      .nav-item:hover::after,
+      .nav-item.active::after {
+        transform: scaleX(1);
+      }
+      .nav-item.active {
+        color: #fff;
+      }
+      .nav-dropdown-panel {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px);
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          visibility 0.2s;
+      }
+      .nav-dropdown:hover .nav-dropdown-panel,
+      .nav-dropdown.open .nav-dropdown-panel {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .nav-dropdown .chev-mini {
+        transition: transform 0.2s ease;
+      }
+      .nav-dropdown:hover .chev-mini,
+      .nav-dropdown.open .chev-mini {
+        transform: rotate(180deg);
+      }
+      .nav-drop-link {
+        transition:
+          background 0.15s ease,
+          padding-left 0.15s ease,
+          color 0.15s ease;
+      }
+      .nav-drop-link:hover {
+        background: rgba(230, 28, 36, 0.1);
+        color: #fff;
+        padding-left: 1.15rem;
+      }
+      .drawer-group summary {
+        list-style: none;
+        cursor: pointer;
+      }
+      .drawer-group summary::-webkit-details-marker {
+        display: none;
+      }
     </style>
   </head>
   <body class="min-h-screen w-full overflow-x-clip">
@@ -921,13 +1007,18 @@
 
     <!-- HEADER / NAV -->
     <header
-      class="sticky top-0 z-50 w-full bg-black/90 backdrop-blur-md border-b border-red-600/30"
+      id="siteHeader"
+      class="navbar sticky top-0 z-50 w-full"
       style="position: -webkit-sticky; position: sticky; top: 0"
     >
       <nav
-        class="max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between"
+        class="max-w-7xl mx-auto px-4 md:px-6 h-[68px] flex items-center justify-between"
       >
-        <a href="#" data-route="home" class="flex items-center gap-3 group">
+        <a
+          href="#"
+          data-route="home"
+          class="flex items-center gap-3 group shrink-0"
+        >
           <span
             class="logo-mark inline-flex items-center justify-center"
             style="filter: drop-shadow(0 0 8px rgba(230, 28, 36, 0.45))"
@@ -954,62 +1045,126 @@
 
         <!-- Desktop nav -->
         <ul
-          class="hidden lg:flex items-center gap-1 font-display text-xs uppercase tracking-widest"
+          class="hidden xl:flex items-stretch gap-0.5 font-display text-[12px] uppercase tracking-widest h-full"
         >
-          <li>
+          <li class="flex items-stretch">
             <a
               data-route="home"
-              class="nav-link px-4 py-2 rounded hover:text-white text-white/70"
+              class="nav-item nav-link flex items-center whitespace-nowrap px-3.5 rounded-md"
               >Home</a
             >
           </li>
-          <li>
+
+          <!-- Services dropdown -->
+          <li class="nav-dropdown relative flex items-stretch">
+            <button
+              type="button"
+              class="nav-item nav-link services-toggle flex items-center whitespace-nowrap gap-1.5 px-3.5 rounded-md"
+              style="
+                background: transparent;
+                border: 0;
+                margin: 0;
+                font: inherit;
+                letter-spacing: inherit;
+                text-transform: inherit;
+                line-height: 1;
+                cursor: pointer;
+              "
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span>Services</span>
+              <i class="fa-solid fa-chevron-down text-[9px] chev-mini"></i>
+            </button>
+            <div
+              class="nav-dropdown-panel absolute left-0 top-[calc(100%+10px)] w-64 clip-corner border border-[color:var(--line)] bg-[#0a0a0d]/98 backdrop-blur-md p-2 shadow-2xl z-50"
+            >
+              <a
+                data-route="tires"
+                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
+              >
+                <i
+                  class="fa-solid fa-car-burst text-[color:var(--red2)] w-4"
+                ></i>
+                <span class="font-display uppercase tracking-widest text-[11px]"
+                  >Tire Services</span
+                >
+              </a>
+              <a
+                data-route="oil"
+                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
+              >
+                <i class="fa-solid fa-oil-can text-[color:var(--red2)] w-4"></i>
+                <span class="font-display uppercase tracking-widest text-[11px]"
+                  >Oil Change</span
+                >
+              </a>
+              <a
+                data-route="detail"
+                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
+              >
+                <i
+                  class="fa-solid fa-spray-can-sparkles text-[color:var(--red2)] w-4"
+                ></i>
+                <span class="font-display uppercase tracking-widest text-[11px]"
+                  >Detailing</span
+                >
+              </a>
+              <div class="divider-red my-1 opacity-40"></div>
+              <a
+                data-route="membership"
+                class="nav-drop-link flex items-center gap-3 px-4 py-3 rounded-md text-white/75 text-xs normal-case tracking-normal"
+              >
+                <i class="fa-solid fa-crown text-[color:var(--gold)] w-4"></i>
+                <span
+                  class="font-display uppercase tracking-widest text-[11px] text-[color:var(--gold)]"
+                  >Membership</span
+                >
+              </a>
+            </div>
+          </li>
+
+          <li class="flex items-stretch">
             <a
-              data-route="tires"
-              class="nav-link px-4 py-2 rounded hover:text-white text-white/70"
-              >Tire Services</a
+              data-scroll="about"
+              class="nav-item nav-link flex items-center whitespace-nowrap px-3.5 rounded-md cursor-pointer"
+              >About</a
             >
           </li>
-          <li>
+          <li class="flex items-stretch">
             <a
-              data-route="oil"
-              class="nav-link px-4 py-2 rounded hover:text-white text-white/70"
-              >Oil Change</a
+              data-route="subscribe"
+              class="nav-item nav-link flex items-center whitespace-nowrap px-3.5 rounded-md"
+              >Email</a
             >
           </li>
-          <li>
-            <a
-              data-route="detail"
-              class="nav-link px-4 py-2 rounded hover:text-white text-white/70"
-              >Detailing</a
-            >
-          </li>
-          <li>
-            <a
-              data-route="membership"
-              class="nav-link px-4 py-2 rounded hover:text-white text-[color:var(--gold)]"
-              >Membership</a
-            >
-          </li>
-          <li>
+          <li class="flex items-stretch">
             <a
               data-route="book"
-              class="nav-link px-4 py-2 rounded hover:text-white text-white/70"
-              >Book</a
+              class="nav-item nav-link flex items-center whitespace-nowrap px-3.5 rounded-md"
+              >Contact</a
             >
           </li>
         </ul>
 
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 shrink-0">
+          <a
+            href="mailto:Tigarcanada@gmail.com"
+            class="hidden md:inline-flex items-center gap-2 chip text-white font-display text-xs uppercase tracking-widest px-3 py-2 rounded-md hover:border-[color:var(--red2)] transition-colors whitespace-nowrap"
+            aria-label="Email Tigar"
+          >
+            <i class="fa-solid fa-envelope text-[color:var(--red2)]"></i>
+            <span class="hidden xl:inline">Tigarcanada@gmail.com</span>
+          </a>
           <a
             href="tel:+16138617100"
-            class="hidden md:inline-flex items-center gap-2 btn-red text-white font-display text-xs uppercase tracking-widest px-4 py-2 rounded-md pulse-red cta-pulse beacon"
+            class="hidden md:inline-flex items-center gap-2 btn-red text-white font-display text-xs uppercase tracking-widest px-4 py-2 rounded-md pulse-red cta-pulse beacon whitespace-nowrap"
           >
             <i class="fa-solid fa-phone"></i> 613-861-7100
           </a>
           <button
             id="menuBtn"
-            class="lg:hidden w-10 h-10 grid place-items-center rounded-md border border-white/10 bg-white/5"
+            class="xl:hidden w-10 h-10 grid place-items-center rounded-md border border-white/10 bg-white/5 hover:border-[color:var(--red2)] transition-colors shrink-0"
             aria-label="Open menu"
           >
             <i class="fa-solid fa-bars text-white"></i>
@@ -1022,7 +1177,7 @@
     <div id="backdrop" class="backdrop fixed inset-0 bg-black/70 z-40"></div>
     <aside
       id="drawer"
-      class="drawer fixed top-0 right-0 h-full w-[82%] max-w-sm z-50 bg-[#09090b] border-l border-[color:var(--line)]"
+      class="drawer fixed top-0 right-0 h-full w-[82%] max-w-sm z-50 bg-[#09090b] border-l border-[color:var(--line)] overflow-y-auto"
     >
       <div
         class="p-5 flex items-center justify-between border-b border-white/10"
@@ -1038,7 +1193,7 @@
         </div>
         <button
           id="closeBtn"
-          class="w-9 h-9 rounded-md border border-white/10 grid place-items-center"
+          class="w-9 h-9 rounded-md border border-white/10 grid place-items-center hover:border-[color:var(--red2)] transition-colors"
         >
           <i class="fa-solid fa-xmark"></i>
         </button>
@@ -1054,38 +1209,71 @@
             >Home</a
           >
         </li>
+
+        <li>
+          <details class="drawer-group rounded-md overflow-hidden">
+            <summary
+              class="flex items-center justify-between gap-3 px-4 py-3 rounded-md hover:bg-white/5"
+            >
+              <span class="flex items-center gap-3"
+                ><i
+                  class="fa-solid fa-screwdriver-wrench text-[color:var(--red2)] w-5"
+                ></i
+                >Services</span
+              >
+              <i class="fa-solid fa-chevron-down text-xs chev"></i>
+            </summary>
+            <div
+              class="pl-6 flex flex-col gap-1 pb-2 normal-case tracking-normal text-sm"
+            >
+              <a
+                data-route="tires"
+                class="drawer-link flex items-center gap-3 px-4 py-2.5 rounded-md hover:bg-white/5 text-white/80"
+                ><i
+                  class="fa-solid fa-car-burst text-[color:var(--red2)] w-5"
+                ></i
+                >Tire Services</a
+              >
+              <a
+                data-route="oil"
+                class="drawer-link flex items-center gap-3 px-4 py-2.5 rounded-md hover:bg-white/5 text-white/80"
+                ><i class="fa-solid fa-oil-can text-[color:var(--red2)] w-5"></i
+                >Oil Change</a
+              >
+              <a
+                data-route="detail"
+                class="drawer-link flex items-center gap-3 px-4 py-2.5 rounded-md hover:bg-white/5 text-white/80"
+                ><i
+                  class="fa-solid fa-spray-can-sparkles text-[color:var(--red2)] w-5"
+                ></i
+                >Detailing</a
+              >
+              <a
+                data-route="membership"
+                class="drawer-link flex items-center gap-3 px-4 py-2.5 rounded-md hover:bg-white/5 text-[color:var(--gold)]"
+                ><i class="fa-solid fa-crown text-[color:var(--gold)] w-5"></i
+                >Membership</a
+              >
+            </div>
+          </details>
+        </li>
+
         <li>
           <a
-            data-route="tires"
+            data-scroll="about"
             class="drawer-link flex items-center gap-3 px-4 py-3 rounded-md hover:bg-white/5"
-            ><i class="fa-solid fa-car-burst text-[color:var(--red2)] w-5"></i
-            >Tire Services</a
+            ><i class="fa-solid fa-circle-info text-[color:var(--red2)] w-5"></i
+            >About</a
           >
         </li>
         <li>
           <a
-            data-route="oil"
-            class="drawer-link flex items-center gap-3 px-4 py-3 rounded-md hover:bg-white/5"
-            ><i class="fa-solid fa-oil-can text-[color:var(--red2)] w-5"></i>Oil
-            Change</a
-          >
-        </li>
-        <li>
-          <a
-            data-route="detail"
+            data-route="subscribe"
             class="drawer-link flex items-center gap-3 px-4 py-3 rounded-md hover:bg-white/5"
             ><i
-              class="fa-solid fa-spray-can-sparkles text-[color:var(--red2)] w-5"
+              class="fa-solid fa-envelope-open-text text-[color:var(--gold)] w-5"
             ></i
-            >Detailing</a
-          >
-        </li>
-        <li>
-          <a
-            data-route="membership"
-            class="drawer-link flex items-center gap-3 px-4 py-3 rounded-md hover:bg-white/5"
-            ><i class="fa-solid fa-crown text-[color:var(--gold)] w-5"></i
-            >Membership</a
+            >Email</a
           >
         </li>
         <li>
@@ -1095,7 +1283,7 @@
             ><i
               class="fa-solid fa-calendar-check text-[color:var(--red2)] w-5"
             ></i
-            >Book Now</a
+            >Contact</a
           >
         </li>
       </ul>
@@ -1105,6 +1293,13 @@
           class="btn-red w-full inline-flex items-center justify-center gap-2 text-white font-display uppercase tracking-widest text-sm py-3 rounded-md"
         >
           <i class="fa-solid fa-phone"></i> Call +1-613-861-7100
+        </a>
+        <a
+          href="mailto:Tigarcanada@gmail.com"
+          class="mt-3 w-full inline-flex items-center justify-center gap-2 chip text-white font-display uppercase tracking-widest text-xs py-3 rounded-md hover:border-[color:var(--red2)]"
+        >
+          <i class="fa-solid fa-envelope text-[color:var(--red2)]"></i>
+          Tigarcanada@gmail.com
         </a>
         <p class="mt-3 text-xs text-white/50 font-mono">
           Cornwall, ON · Mobile Service
@@ -1139,8 +1334,11 @@
             </div>
           </div>
           <p class="mt-4 text-sm text-white/60">
-            Cornwall Ontario's premium mobile auto infrastructure — tires, oil,
-            detailing and recovery. We come to you. Anytime. Anywhere.
+            Tigar is Cornwall’s premium mobile auto infrastructure providing
+            seasonal tire services, flat repair roadside recovery, synthetic
+            oil, and filter changes, car wash, showroom grade detailing, Dashcam
+            installation, Door unlock, Key programming, and much more at your
+            driveway or anywhere and anytime.
           </p>
         </div>
         <div>
@@ -1178,6 +1376,13 @@
                 >Total Care Membership</a
               >
             </li>
+            <li>
+              <a
+                data-route="subscribe"
+                class="hover:text-[color:var(--gold)] cursor-pointer"
+                >Subscribe & Offers</a
+              >
+            </li>
           </ul>
         </div>
         <div>
@@ -1190,6 +1395,17 @@
             <li>
               <i class="fa-solid fa-phone text-[color:var(--red2)] w-5"></i>
               +1-613-861-7100
+            </li>
+            <li>
+              <a
+                href="mailto:Tigarcanada@gmail.com"
+                class="hover:text-[color:var(--red2)] transition-colors"
+              >
+                <i
+                  class="fa-solid fa-envelope text-[color:var(--red2)] w-5"
+                ></i>
+                Tigarcanada@gmail.com
+              </a>
             </li>
             <li>
               <i
@@ -1237,7 +1453,16 @@
 
       /* ---------- ROUTER ---------- */
       const app = document.getElementById("app");
-      const routes = ["home", "tires", "oil", "detail", "membership", "book"];
+      const routes = [
+        "home",
+        "tires",
+        "oil",
+        "detail",
+        "membership",
+        "book",
+        "subscribe",
+      ];
+      let pendingScrollTarget = null;
 
       function setActive(route) {
         document.querySelectorAll(".nav-link, .drawer-link").forEach((el) => {
@@ -1247,6 +1472,21 @@
       function navigate(route) {
         if (!routes.includes(route)) route = "home";
         window.location.hash = route;
+      }
+      function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+      function goToSection(id) {
+        const currentRoute = (window.location.hash || "#home").replace("#", "");
+        if (currentRoute === "home") {
+          scrollToSection(id);
+        } else {
+          pendingScrollTarget = id;
+          navigate("home");
+        }
       }
       function applyGlitch() {
         app.querySelectorAll("h1, h2").forEach((h) => {
@@ -1266,7 +1506,13 @@
         app.classList.add("page-out");
         setTimeout(() => {
           app.innerHTML = views[r]();
-          window.scrollTo({ top: 0, behavior: "instant" });
+          if (pendingScrollTarget) {
+            const target = pendingScrollTarget;
+            pendingScrollTarget = null;
+            setTimeout(() => scrollToSection(target), 60);
+          } else {
+            window.scrollTo({ top: 0, behavior: "instant" });
+          }
           bindDynamic();
           applyGlitch();
           app.classList.remove("page-out");
@@ -1283,8 +1529,48 @@
         if (a) {
           e.preventDefault();
           navigate(a.dataset.route);
+          return;
+        }
+        const s = e.target.closest("[data-scroll]");
+        if (s) {
+          e.preventDefault();
+          goToSection(s.dataset.scroll);
+          return;
+        }
+        // Services dropdown toggle on mobile/touch (click instead of hover)
+        const toggle = e.target.closest(".services-toggle");
+        if (toggle) {
+          const dd = toggle.closest(".nav-dropdown");
+          const isOpen = dd.classList.contains("open");
+          document
+            .querySelectorAll(".nav-dropdown.open")
+            .forEach((el) => el.classList.remove("open"));
+          if (!isOpen) {
+            dd.classList.add("open");
+            toggle.setAttribute("aria-expanded", "true");
+          } else {
+            toggle.setAttribute("aria-expanded", "false");
+          }
+          return;
+        }
+        if (!e.target.closest(".nav-dropdown")) {
+          document
+            .querySelectorAll(".nav-dropdown.open")
+            .forEach((el) => el.classList.remove("open"));
         }
       });
+
+      /* ---------- STICKY NAVBAR SCROLL STATE ---------- */
+      const siteHeader = document.getElementById("siteHeader");
+      function onScrollHeader() {
+        if (window.scrollY > 12) {
+          siteHeader.classList.add("scrolled");
+        } else {
+          siteHeader.classList.remove("scrolled");
+        }
+      }
+      window.addEventListener("scroll", onScrollHeader, { passive: true });
+      onScrollHeader();
 
       /* ---------- DRAWER ---------- */
       const drawer = document.getElementById("drawer");
@@ -1390,6 +1676,39 @@
             form.reset();
           });
         }
+
+        /* Subscribe form */
+        const subForm = document.getElementById("subscribeForm");
+        if (subForm) {
+          const subInput = document.getElementById("subEmail");
+          const subError = document.getElementById("subEmailError");
+          const subSuccess = document.getElementById("subSuccess");
+
+          const isValidEmail = (value) => {
+            const v = String(value || "").trim();
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) && v.length <= 255;
+          };
+
+          subInput.addEventListener("input", () => {
+            subError.classList.add("hidden");
+            subInput.classList.remove("border-[color:var(--red2)]");
+          });
+
+          subForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const email = subInput.value.trim();
+            if (!isValidEmail(email)) {
+              subError.classList.remove("hidden");
+              subInput.classList.add("border-[color:var(--red2)]");
+              subInput.focus();
+              return;
+            }
+            // Simulated success state — wire to backend/email provider as needed
+            subForm.classList.add("hidden");
+            subSuccess.classList.remove("hidden");
+            subSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+          });
+        }
       }
 
       /* Response console */
@@ -1456,9 +1775,7 @@
       <span class="text-white/90">ANYWHERE.</span>
     </h1>
     <p class="mt-6 max-w-2xl text-white/70 text-lg">
-      TIGAR is Cornwall Ontario's premium <b class="text-white">mobile auto infrastructure</b> —
-      seasonal tire swaps, flat repair, roadside recovery, synthetic oil changes, and showroom-grade detailing.
-      One call. One gladiator crew. Zero excuses.
+      Tigar is Cornwall’s premium <b class="text-white">mobile auto infrastructure</b> providing seasonal tire services, flat repair roadside recovery, synthetic oil, and filter changes, car wash, showroom grade detailing, Dashcam installation, Door unlock, Key programming, and much more at your driveway or anywhere and anytime.
     </p>
 
     <div class="mt-8 flex flex-wrap gap-3">
@@ -1584,12 +1901,16 @@ ${discountBanner}
   </div>
 </section>
 
-<!-- Entity block for LLMs -->
-<section class="max-w-7xl mx-auto px-4 md:px-6 mt-16">
+<!-- Entity block for LLMs / About Us -->
+<section id="about" class="max-w-7xl mx-auto px-4 md:px-6 mt-16 scroll-mt-24">
+  <div class="mb-6">
+    <div class="text-xs font-mono uppercase tracking-widest text-white/40">// about_tigar</div>
+    <h2 class="font-display text-2xl sm:text-3xl md:text-4xl text-white">About Us</h2>
+  </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
     <article class="chip clip-corner p-6">
       <div class="font-display text-white">About TIGAR</div>
-      <p class="text-sm text-white/70 mt-2">TIGAR — The Indian Gladiator Autotires and Recovery — is the premium mobile auto infrastructure provider in Cornwall, Ontario, delivering tires, oil, detailing, and roadside recovery across the SD&G counties.</p>
+      <p class="text-sm text-white/70 mt-2">Tigar is Cornwall’s premium mobile auto infrastructure providing seasonal tire services, flat repair roadside recovery, synthetic oil, and filter changes, car wash, showroom grade detailing, Dashcam installation, Door unlock, Key programming, and much more at your driveway or anywhere and anytime.</p>
     </article>
     <article class="chip clip-corner p-6">
       <div class="font-display text-white">Service Coverage</div>
@@ -2173,6 +2494,11 @@ ${discountBanner}
       <div class="font-display text-white">Contact Grid</div>
       <ul class="mt-3 space-y-3 text-sm text-white/80">
         <li><i class="fa-solid fa-phone text-[color:var(--red2)] w-5"></i> +1-613-861-7100</li>
+        <li>
+          <a href="mailto:Tigarcanada@gmail.com" class="hover:text-[color:var(--red2)] transition-colors">
+            <i class="fa-solid fa-envelope text-[color:var(--red2)] w-5"></i> Tigarcanada@gmail.com
+          </a>
+        </li>
         <li><i class="fa-brands fa-instagram text-[color:var(--red2)] w-5"></i> @tigarcanada</li>
         <li><i class="fa-solid fa-location-dot text-[color:var(--red2)] w-5"></i> Cornwall, Ontario</li>
         <li><i class="fa-regular fa-clock text-[color:var(--red2)] w-5"></i> 7:00 – 23:00 · 7 days</li>
@@ -2188,6 +2514,100 @@ ${discountBanner}
       <a data-route="membership" class="cursor-pointer inline-block mt-3 text-xs font-display uppercase tracking-widest text-[color:var(--gold)]">Learn more <i class="fa-solid fa-arrow-right ml-1"></i></a>
     </div>
   </aside>
+</section>
+
+${discountBanner}
+`;
+
+      /* ---- SUBSCRIBE ---- */
+      views.subscribe = () => `
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-25"></div>
+  <div class="absolute inset-0" style="background:radial-gradient(700px 320px at 80% 0%,rgba(212,175,55,.18),transparent 60%), radial-gradient(600px 280px at 20% 100%,rgba(230,28,36,.15),transparent 60%);"></div>
+  <div class="max-w-7xl mx-auto px-4 md:px-6 pt-14 pb-8 relative">
+    <div class="font-mono text-xs uppercase tracking-widest text-[color:var(--gold)]">// module_07 · comms_channel</div>
+    <h1 class="font-display font-black text-3xl sm:text-5xl md:text-6xl text-white mt-2">
+      JOIN THE <span class="text-[color:var(--red2)] glow-text">GRID</span>
+    </h1>
+    <p class="text-white/70 mt-3 max-w-2xl">
+      Get exclusive offers, seasonal reminders, and insider updates from TIGAR — delivered straight to your inbox.
+    </p>
+  </div>
+</section>
+
+<section class="max-w-7xl mx-auto px-4 md:px-6 mt-8">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-center">
+    <div class="clip-corner border border-[color:var(--gold)]/30 bg-gradient-to-br from-[#0e0a04] via-[#0a0a0d] to-[#050505] p-6 md:p-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-40 h-40 bg-[color:var(--gold)]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+      <div class="relative">
+        <i class="fa-solid fa-envelope-open-text text-4xl text-[color:var(--gold)]"></i>
+        <h2 class="font-display text-2xl sm:text-3xl text-white mt-4">Subscribe for Exclusive Offers & Updates</h2>
+        <p class="text-white/60 mt-2 text-sm">
+          Be the first to know about seasonal service deals, new package drops, and mobile dispatch availability across Cornwall & SDG.
+        </p>
+
+        <form id="subscribeForm" class="mt-6 space-y-4" novalidate>
+          <label class="block">
+            <span class="text-xs font-mono uppercase tracking-widest text-white/60">Email Address</span>
+            <input
+              id="subEmail"
+              required
+              type="email"
+              name="email"
+              maxlength="255"
+              placeholder="you@example.com"
+              class="mt-2 w-full px-4 py-3 rounded-md border border-white/10 text-white"
+            />
+            <p id="subEmailError" class="hidden mt-2 text-xs text-[color:var(--red2)] font-mono">
+              <i class="fa-solid fa-triangle-exclamation mr-1"></i> Please enter a valid email address.
+            </p>
+          </label>
+          <button
+            type="submit"
+            class="btn-gold w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-md font-display uppercase tracking-widest text-sm"
+          >
+            <i class="fa-solid fa-bolt"></i> Subscribe
+          </button>
+        </form>
+
+        <div id="subSuccess" class="hidden mt-6 clip-corner border border-green-400/30 bg-[#03110a] p-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-green-400/15 grid place-items-center">
+              <i class="fa-solid fa-check text-green-400"></i>
+            </div>
+            <div>
+              <div class="font-display text-white text-sm">You're on the list!</div>
+              <div class="text-xs text-white/60 mt-0.5">Watch your inbox for TIGAR updates & exclusive offers.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="clip-corner border border-white/10 bg-[#0a0a0d] p-5">
+        <div class="font-display text-white">What you'll get</div>
+        <ul class="mt-3 space-y-3 text-sm text-white/80">
+          <li><i class="fa-solid fa-check text-green-400 w-5"></i> Early access to seasonal promotions</li>
+          <li><i class="fa-solid fa-check text-green-400 w-5"></i> Tire swap & oil change reminders</li>
+          <li><i class="fa-solid fa-check text-green-400 w-5"></i> Members-only discounts & flash deals</li>
+          <li><i class="fa-solid fa-check text-green-400 w-5"></i> No spam — just useful car care intel</li>
+        </ul>
+      </div>
+      <div class="clip-corner border border-[color:var(--line)] bg-[#0d0507] p-5">
+        <div class="font-display text-white">Contact TIGAR</div>
+        <ul class="mt-3 space-y-2 text-sm text-white/80">
+          <li><i class="fa-solid fa-phone text-[color:var(--red2)] w-5"></i> +1-613-861-7100</li>
+          <li>
+            <a href="mailto:Tigarcanada@gmail.com" class="hover:text-[color:var(--red2)] transition-colors">
+              <i class="fa-solid fa-envelope text-[color:var(--red2)] w-5"></i> Tigarcanada@gmail.com
+            </a>
+          </li>
+          <li><i class="fa-solid fa-location-dot text-[color:var(--red2)] w-5"></i> Cornwall, Ontario</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
 ${discountBanner}
