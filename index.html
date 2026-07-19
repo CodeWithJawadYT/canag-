@@ -1590,6 +1590,21 @@
             };
             const ref =
               "TGR-" + Math.random().toString(36).slice(2, 7).toUpperCase();
+
+            // Build and open a pre-filled email to Tigar's inbox with the booking details
+            const mailSubject = `New Booking Request — REF ${ref} — ${clean.service}`;
+            const mailBody =
+              `New appointment request from the Tigar website\n\n` +
+              `Reference: ${ref}\n` +
+              `Name: ${clean.name}\n` +
+              `Phone: ${clean.phone}\n` +
+              `Service Requested: ${clean.service}\n` +
+              `Service Address: ${clean.address}\n` +
+              `Notes: ${clean.notes || "—"}\n`;
+            const mailtoLink =
+              `mailto:Tigarcanada@gmail.com?subject=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+            window.location.href = mailtoLink;
+
             showConsole(
               "DEPLOYED",
               `> INTAKE ACCEPTED · REF ${ref}
@@ -1597,7 +1612,8 @@
 > CHANNEL ........ ${clean.phone}
 > SERVICE ........ ${clean.service}
 > GRID LOCATION .. ${clean.address}
-> STATUS ......... Dispatch engaged. Gladiator unit rolling.
+> STATUS ......... Email client opened — Tigarcanada@gmail.com
+> ACTION NEEDED .. Please hit Send in the email app that just opened
 > ETA ............ A team member will confirm within 15 minutes.`,
               "#22c55e",
             );
